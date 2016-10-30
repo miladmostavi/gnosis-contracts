@@ -1,0 +1,154 @@
+[
+    {
+        "type": "deployment",
+        "file": "Wallets/MultiSigWallet.sol",
+        "params": [
+            ["dceceaf3fc5c0a63d195d69b1a90011b7b19650d", "598443f1880ef585b21f1d7585bd0577402861e5"],
+            2
+        ]
+    },
+    {
+        "type": "assertion",
+        "contract": "MultiSigWallet",
+        "name": "owners",
+        "params": [0],
+        "return": "dceceaf3fc5c0a63d195d69b1a90011b7b19650d"
+    },
+    {
+        "type": "assertion",
+        "contract": "MultiSigWallet",
+        "name": "owners",
+        "params": [1],
+        "return": "598443f1880ef585b21f1d7585bd0577402861e5"
+    },
+    {
+        "type": "assertion",
+        "contract": "MultiSigWallet",
+        "name": "required",
+        "return": 2
+    },
+    {
+        "type": "deployment",
+        "file": "DAO/DAO.sol"
+    },
+    {
+        "type": "deployment",
+        "file": "DAO/DAODutchAuction.sol"
+    },
+    {
+        "type": "deployment",
+        "file": "DAO/DAOToken.sol",
+        "params": ["DAODutchAuction"]
+    },
+    {
+        "type": "deployment",
+        "file": "EventFactory/OutcomeTokenLibrary.sol"
+    },
+    {
+        "type": "deployment",
+        "file": "EventFactory/EventFactory.sol",
+        "addresses": {
+            "DAO": "DAO",
+            "OutcomeTokenLibrary": "OutcomeTokenLibrary"
+        }
+    },
+    {
+        "type": "deployment",
+        "file": "MarketCrowdfunding/MarketCrowdfunding.sol",
+        "addresses": {
+            "EventFactory": "EventFactory"
+        }
+    },
+    {
+        "type": "deployment",
+        "file": "MarketFactories/DefaultMarketFactory.sol",
+        "addresses": {
+            "EventFactory": "EventFactory"
+        }
+    },
+    {
+        "type": "deployment",
+        "file": "Utils/MathLibrary.sol"
+    },
+    {
+        "type": "deployment",
+        "file": "MarketMakers/LMSRMarketMaker.sol",
+        "addresses": {
+            "MathLibrary": "MathLibrary"
+        }
+    },
+    {
+        "type": "deployment",
+        "file": "Tokens/EtherToken.sol"
+    },
+    {
+        "type": "deployment",
+        "file": "Oracles/DefaultFallbackOracle.sol"
+    },
+    {
+        "type": "deployment",
+        "file": "Tokens/HunchGameToken.sol"
+    },
+    {
+        "type": "deployment",
+        "file": "MarketFactories/HunchGameMarketFactory.sol",
+        "addresses": {
+            "EventFactory": "EventFactory",
+            "HunchGameToken": "HunchGameToken"
+        }
+    },
+    {
+        "type": "deployment",
+        "file": "Oracles/DifficultyOracle.sol"
+    },
+    {
+        "type": "deployment",
+        "file": "Oracles/FutarchyOracle.sol",
+        "addresses": {
+            "EtherToken": "EtherToken",
+            "EventFactory": "EventFactory",
+            "DefaultMarketFactory": "DefaultMarketFactory",
+            "LMSRMarketMaker": "LMSRMarketMaker"
+        }
+    },
+    {
+        "type": "deployment",
+        "file": "Oracles/UltimateOracle.sol",
+        "addresses": {
+            "EtherToken": "EtherToken"
+        }
+    },
+    {
+        "type": "deployment",
+        "file": "Wallets/MistWallet.sol",
+        "params": [
+            ["dceceaf3fc5c0a63d195d69b1a90011b7b19650d", "598443f1880ef585b21f1d7585bd0577402861e5"],
+            2,
+            0
+        ]
+    },
+    {
+        "type": "transaction",
+        "contract": "DAO",
+        "name": "setup",
+        "params": [
+            "EventFactory", "MultiSigWallet"
+        ]
+    },
+    {
+        "type": "transaction",
+        "contract": "DAODutchAuction",
+        "name": "setup",
+        "params": [
+            "DAOToken", "MultiSigWallet", "MistWallet"
+        ]
+    },
+    {
+        "type": "transaction",
+        "contract": "HunchGameToken",
+        "name": "setup",
+        "params": [
+            "HunchGameMarketFactory"
+        ]
+    }
+]
