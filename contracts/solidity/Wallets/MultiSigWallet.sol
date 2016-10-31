@@ -12,6 +12,7 @@ contract MultiSigWallet {
     event Deposit(address sender, uint value);
     event OwnerAddition(address owner);
     event OwnerRemoval(address owner);
+    event RequiredUpdate(uint required);
 
     mapping (bytes32 => Transaction) public transactions;
     mapping (bytes32 => mapping (address => bool)) public confirmations;
@@ -90,6 +91,7 @@ contract MultiSigWallet {
         maxRequired(owners, _required)
     {
         required = _required;
+        RequiredUpdate(_required);
     }
 
     function confirmationCount(bytes32 transactionHash)
