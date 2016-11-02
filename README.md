@@ -5,7 +5,7 @@ Gnosis Smart Contracts
 
 [![Slack Status](http://slack.gnosis.pm/badge.svg)](http://slack.gnosis.pm)
 
-Collection of smart contracts for the Gnosis prediction market platform (https://www.gnosis.pm).
+Collection of smart contracts for the Gnosis prediction market platform (https://www.gnosis.pm). To interact with those contracts have a look at (https://github.com/ConsenSys/gnosis.js/)
 
 Architecture
 -------------
@@ -66,7 +66,7 @@ Allows to resolve a market based on the outcome of a dependent market to use mar
 An oracle contract wrapping around the oracle service provided by Oraclize. Allows to resolve any ranged event supported by Oraclize.
 
 #### [UltimateOracle.sol](contracts/solidity/Oracles/UltimateOracle.sol)
-Allows to use signed results by off-chain oracle providers like Reality Keys. Multiple oracles can be combined to resolve an event. A majority vote will define the final outcome. An oracle result can be challenged by anyone within a challenge period. If an oracle was challenged its result will be overwritten by the Ultimate Oracle. When an oracle result was challenged, a second market is opened to define the right outcome. Everyone can put Ether on the outcome they believe is the right outcome. If the frontrunner is not changed within a decision period, the frontrunner will be set as the final ultimate outcome. To make sure a single Ether holder cannot bet all his money at once, the amount allowed to bid on the frontrunner is in relation to all Ether bet on all other outcomes. The Ultimate Oracle contracts supports the use of fallback oracles.
+Allows to use signed results by off-chain oracle providers like Reality Keys. Multiple oracles can be combined to resolve an event. A majority vote will define the final outcome. An oracle result can be challenged by anyone within a challenge period. If an oracle was challenged its result will be overwritten by the Ultimate Oracle. When an oracle result was challenged, a second market is opened to define the right outcome. Everyone can put Ether on the outcome they believe is the right outcome. If the frontrunner is not changed within a decision period, the frontrunner will be set as the final ultimate outcome. Everyone participating on the winning side will get its fraction of the losing side. To make sure that this fraction is not diluted by a last minute bet on the clear winner, the amount allowed to bid on the frontrunner is in relation to all Ether bet on all other outcomes. The Ultimate Oracle contracts supports the use of fallback oracles.
 
 ### State Channels
 #### [StateChannel.sol](contracts/solidity/StateChannels/StateChannel.sol)
