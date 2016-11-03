@@ -155,7 +155,5 @@ Excluded from those constraints are the following contracts:
 
 Contributors
 -------------
-A bug bounty will be announced very soon. In the meantime have a look at the contracts, which will be included in the bounty program:
-
 - Stefan George ([Georgi87](https://github.com/Georgi87))
 - Martin Köppelmann ([koeppelmann](https://github.com/koeppelmann))
