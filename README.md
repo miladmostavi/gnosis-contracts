@@ -1,7 +1,7 @@
 Gnosis Smart Contracts
 ===================
 
-![logo](http://gnosis.pm/static/landingpage/img/Gnosis-Logo_x2.b5a59844deda.png)
+<img src="assets/logo.png" />
 
 [![Slack Status](http://slack.gnosis.pm/badge.svg)](http://slack.gnosis.pm)
 
