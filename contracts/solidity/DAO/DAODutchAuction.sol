@@ -32,7 +32,7 @@ contract DAODutchAuction {
     uint public totalRaised;
     uint public finalPrice;
     // user => amount
-    mapping (address => uint) bids;
+    mapping (address => uint) public bids;
     Stages public stage = Stages.AuctionStarted;
 
     enum Stages {
@@ -154,26 +154,6 @@ contract DAODutchAuction {
         owner = msg.sender;
     }
 
-    /// @dev Default function triggers bid function if auction is still running or claimTokens otherwise.
-    function()
-        external
-        payable
-    {
-        if (stage == Stages.AuctionStarted && calcTokenPrice() > calcStopPrice()) {
-            // Auction is still going and bids are accepted
-            bid();
-        }
-        else {
-            // Auction ended and tokens can be assigned
-            claimTokens();
-            // Return Ether
-            if (msg.value > 0 && !msg.sender.send(msg.value)) {
-                // Sending failed
-                throw;
-            }
-        }
-    }
-
     /*
      *  Read functions
      */
@@ -205,5 +185,17 @@ contract DAODutchAuction {
         returns (bool launched)
     {
         return endTime + WAITING_PERIOD < block.timestamp;
+    }
+
+    // updateStage allows calls to receive correct stage. It can be used for transactions but is not part of the regular token creation routine.
+    // It is not marked as constant because timedTransitions modifier is altering state and constant is not yet enforced by solc.
+    /// @dev Returns correct stage, even if a function with timedTransitions modifier has not yet been called successfully.
+    /// @return _stage Returns current auction stage.
+    function updateStage()
+        external
+        timedTransitions
+        returns (Stages _stage)
+    {
+        return stage;
     }
 }

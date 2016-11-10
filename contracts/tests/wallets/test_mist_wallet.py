@@ -3,7 +3,7 @@ from ..abstract_test import AbstractTestContract, keys, accounts
 
 class TestContract(AbstractTestContract):
     """
-    run test with python -m unittest contracts.tests.wallets.test_multisig_wallet
+    run test with python -m unittest contracts.tests.wallets.test_mist_wallet
     """
 
     def __init__(self, *args, **kwargs):
